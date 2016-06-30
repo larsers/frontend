@@ -3,19 +3,20 @@ git:
   path: github.com/larsers/frontend
 script:
   - echo "build commands"
-  - .shipped/build
-  - .shipped/test
+  - echo "no build command"
+  - echo "no test command"
 clone:
   path: github.com/larsers/frontend
 build:
   image: golang:1.5
   commands:
     - echo "build commands"
-    - .shipped/build
-    - .shipped/test
+    - echo "no build command"
+    - echo "no test command"
 publish:
   docker:
     file: ./Dockerfile
+    insecure: true
     username: $$docker_user
     password: $$docker_key
     registry: $$docker_registry
@@ -23,12 +24,3 @@ publish:
     email: $$docker_user_email
     tag: $$COMMIT
     
-
-
-notify:
-  webhook:
-    image: shippedrepos-docker-drone.bintray.io/drone-webhook
-    urls:
-      - "https://api.ciscoshipped.io/webhooks/drone"
-    on_success: true
-    on_failure: true
